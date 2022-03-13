@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: docker
+spec:
+  params:
+  - name: image
+    value: localhost:5000/simple
+  taskRef:
+    name: docker-build
+  workspaces:
+  - name: source
+    persistentVolumeClaim:
+      claimName: pvc-claim-2

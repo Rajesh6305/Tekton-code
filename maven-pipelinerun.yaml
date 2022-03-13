@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: maven-test-pipeline-run
+spec:
+  serviceAccountName: github-bot
+  pipelineRef:
+    name: maven-test-pipeline
+  workspaces:
+    - name: maven-settings
+      emptyDir: {}
+    - name: shared-workspace
+      persistentvolumeclaim:
+        claimName: pvc-claim-2
